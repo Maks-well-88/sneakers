@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.scss';
 import { Main } from '../../pages/main/Main';
 import { Header } from '../header/Header';
+import { Favourites } from '../../pages/favourites/Favourites';
+import { Orders } from '../../pages/orders/Orders';
 import { AppContext } from '../../contexts/AppContext';
 
 export const App = () => {
@@ -23,7 +26,11 @@ export const App = () => {
 		<div className='container'>
 			<AppContext.Provider value={{ cards }}>
 				<Header />
-				<Main />
+				<Routes>
+					<Route path='/' element={<Main />} />
+					<Route path='/favourites' element={<Favourites />} />
+					<Route path='/orders' element={<Orders />} />
+				</Routes>
 				{/* <Cart /> */}
 			</AppContext.Provider>
 		</div>
