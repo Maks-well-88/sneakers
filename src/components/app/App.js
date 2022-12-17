@@ -8,7 +8,7 @@ import { Orders } from '../../pages/orders/Orders';
 import { AppContext } from '../../contexts/AppContext';
 
 export const App = () => {
-	const [cards, setCards] = useState();
+	const [cards, setCards] = useState([]);
 
 	useEffect(() => {
 		(async () => {
