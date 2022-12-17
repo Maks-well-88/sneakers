@@ -1,0 +1,96 @@
+@mixin button($top, $width, $height, $border-color, $radius) {
+	cursor: pointer;
+	position: absolute;
+	top: $top;
+	width: $width;
+	height: $height;
+	border: 1px solid $border-color;
+	border-radius: $radius;
+	background-color: #ffffff;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.card {
+	width: 100%;
+	height: 258px;
+	border: 1px solid #f3f3f3;
+	border-radius: 40px;
+	position: relative;
+	transition: all 0.2s ease;
+
+	&:hover {
+		transform: translateY(-10px);
+		box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
+	}
+
+	&__add {
+    @include button(193px, 32px, 32px, #f2f2f2, 8px);
+		right: 30px;
+		background-image: url('../../images/cross-btn.svg');
+
+
+		&_active {
+			border: none;
+			background-image: url('../../images/check-active.png');
+		}
+	}
+
+	&__like {
+    @include button(26px, 32px, 32px, #f8f8f8, 7px);
+		left: 28px;
+		background-image: url('../../images/card-like.jpg');
+		z-index: 1;
+
+		&_active {
+			background-color: #fef0f0;
+			background-image: url('../../images/card-like-active.svg');
+		}
+	}
+
+	&__price-label {
+		display: block;
+		text-transform: uppercase;
+		color: #bdbdbd;
+		font-size: 11px;
+		line-height: 1.2;
+		font-weight: 500;
+		margin: 14px 0 0 29px;
+	}
+
+	&__image {
+		width: 133px;
+		height: 112px;
+		position: relative;
+		top: 19px;
+		left: 32px;
+	}
+
+	&__title {
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 1.2;
+		max-width: 150px;
+		min-height: 34px;
+		margin: 0 0 0 30px;
+		padding-top: 30px;
+	}
+
+	&__price-label {
+		display: block;
+		text-transform: uppercase;
+		color: #bdbdbd;
+		font-size: 11px;
+		line-height: 1.2;
+		font-weight: 500;
+		margin: 14px 0 0 29px;
+	}
+
+	&__price {
+		display: block;
+		font-size: 14px;
+		font-weight: 700;
+		line-height: 1.2;
+		margin: 2px 0 0 29px;
+	}
+}
