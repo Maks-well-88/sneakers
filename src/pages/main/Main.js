@@ -4,13 +4,14 @@ import { Card } from '../../components/card/Card';
 import './Main.scss';
 import { AppContext } from '../../contexts/AppContext';
 import { useForm } from '../../hooks/UseForm';
+import { Skeleton } from '../../components/skeleton/Skeleton';
 
 export const Main = () => {
-	const { cards } = useContext(AppContext);
+	const { cards, isLoading } = useContext(AppContext);
 	const { values, setValues, handleChange } = useForm({ search: '' });
+	const filteredCards = cards.filter(card => card.title.toLowerCase().includes(values.search.toLowerCase()));
 
 	const handleClearInput = () => setValues({ search: '' });
-	const filteredCards = cards.filter(card => card.title.toLowerCase().includes(values.search.toLowerCase()));
 
 	return (
 		<main className='main'>
@@ -40,20 +41,22 @@ export const Main = () => {
 					</div>
 				</div>
 				<div className='goods__wrapper'>
-					{filteredCards.map(card => (
-						<Card
-							key={card.id}
-							title={card.title}
-							image={card.image}
-							price={card.price}
-							toggleLikeButton={card => {
-								card.target.classList.toggle('card__like_active');
-							}}
-							toggleAddButton={card => {
-								card.target.classList.toggle('card__add_active');
-							}}
-						/>
-					))}
+					{isLoading
+						? [...new Array(12)].map((_, index) => <Skeleton key={index} />)
+						: filteredCards.map(card => (
+								<Card
+									key={card.id}
+									title={card.title}
+									image={card.image}
+									price={card.price}
+									toggleLikeButton={card => {
+										card.target.classList.toggle('card__like_active');
+									}}
+									toggleAddButton={card => {
+										card.target.classList.toggle('card__add_active');
+									}}
+								/>
+						  ))}
 				</div>
 			</section>
 		</main>

@@ -9,6 +9,7 @@ import { AppContext } from '../../contexts/AppContext';
 
 export const App = () => {
 	const [cards, setCards] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		(async () => {
@@ -16,15 +17,16 @@ export const App = () => {
 				const cardsResponse = await fetch('https://62fa6e0cffd7197707ec6e08.mockapi.io/items');
 				const cards = await cardsResponse.json();
 				setCards(cards);
+				setIsLoading(false);
 			} catch (error) {
 				console.error(error);
 			}
 		})();
-	}, []);
+	}, [setCards, setIsLoading]);
 
 	return (
 		<div className='container'>
-			<AppContext.Provider value={{ cards }}>
+			<AppContext.Provider value={{ cards, isLoading }}>
 				<Header />
 				<Routes>
 					<Route path='/' element={<Main />} />
