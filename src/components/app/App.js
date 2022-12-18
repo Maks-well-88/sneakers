@@ -6,10 +6,16 @@ import { Header } from '../header/Header';
 import { Favourites } from '../../pages/favourites/Favourites';
 import { Orders } from '../../pages/orders/Orders';
 import { AppContext } from '../../contexts/AppContext';
+import { Cart } from '../cart/Cart';
 
 export const App = () => {
 	const [cards, setCards] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isOpenedCart, setIsOpenedCart] = useState(false);
+
+	const handleOpenCart = () => setIsOpenedCart(true);
+	const handleCloseEsc = e => e.key === 'Escape' && setIsOpenedCart(false);
+	const handleCloseCart = e => e.target === e.currentTarget && setIsOpenedCart(false) && e.stopPropagation();
 
 	useEffect(() => {
 		(async () => {
@@ -26,14 +32,16 @@ export const App = () => {
 
 	return (
 		<div className='container'>
-			<AppContext.Provider value={{ cards, isLoading }}>
+			<AppContext.Provider
+				value={{ cards, isLoading, isOpenedCart, handleOpenCart, handleCloseEsc, handleCloseCart }}
+			>
 				<Header />
 				<Routes>
 					<Route path='/' element={<Main />} />
 					<Route path='/favourites' element={<Favourites />} />
 					<Route path='/orders' element={<Orders />} />
 				</Routes>
-				{/* <Cart /> */}
+				{<Cart />}
 			</AppContext.Provider>
 		</div>
 	);

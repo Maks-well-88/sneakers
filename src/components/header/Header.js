@@ -1,9 +1,13 @@
+import { useContext } from 'react';
 import logo from '../../images/logo.jpg';
 import { headerNavigationData } from '../../utils/constants';
 import { Link } from 'react-router-dom';
 import './Header.scss';
+import { AppContext } from '../../contexts/AppContext';
 
 export const Header = () => {
+	const { handleOpenCart } = useContext(AppContext);
+
 	return (
 		<header className='header'>
 			<Link className='header__link' to='/'>
@@ -26,7 +30,7 @@ export const Header = () => {
 									<img className='header__icon' src={item.source} alt={item.alt} />
 								</Link>
 							) : (
-								<img className='header__icon' src={item.source} alt={item.alt} />
+								<img className='header__icon' src={item.source} onClick={handleOpenCart} alt={item.alt} />
 							)}
 							{item.hasPrice && <span className='header__total-price'>1205 руб.</span>}
 						</li>
