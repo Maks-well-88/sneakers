@@ -5,6 +5,7 @@ import './Main.scss';
 import { AppContext } from '../../contexts/AppContext';
 import { useForm } from '../../hooks/UseForm';
 import { Skeleton } from '../../components/skeleton/Skeleton';
+import { BannerSkeleton } from '../../components/banner-skeleton/BannerSkeleton';
 
 export const Main = () => {
 	const { cards, isLoading } = useContext(AppContext);
@@ -16,10 +17,16 @@ export const Main = () => {
 	return (
 		<main className='main'>
 			<div className='slider'>
-				<a href='/'>
-					<img className='slider__banner' src={banner} alt='Баннер' />
-				</a>
-				<button className='slider__button' type='button'></button>
+				{isLoading ? (
+					<BannerSkeleton />
+				) : (
+					<>
+						<a href='/'>
+							<img className='slider__banner' src={banner} alt='Баннер' />
+						</a>
+						<button className='slider__button' type='button'></button>
+					</>
+				)}
 			</div>
 			<section className='goods'>
 				<div className='goods__search'>
