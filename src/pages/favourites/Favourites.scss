@@ -1,5 +1,5 @@
 .favourite {
-	margin: 0 auto;
+	margin: 240px auto 0 auto;
 	max-width: 290px;
 	display: flex;
 	flex-direction: column;
@@ -7,7 +7,6 @@
 	justify-content: center;
 
 	&__image {
-		margin-top: 252px;
 		width: 70px;
 		height: 70px;
 	}
@@ -36,8 +35,6 @@
 
 	&__button {
 		cursor: pointer;
-		box-sizing: border-box;
-		padding: 17px 0 19px 0;
 		width: 245px;
 		height: 55px;
 		border: none;
@@ -47,12 +44,8 @@
 		font-weight: 600;
 		font-size: 16px;
 		line-height: 19px;
-		text-align: center;
 		color: #ffffff;
 		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 
 		&:hover {
 			opacity: 0.8;
