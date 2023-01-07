@@ -8,7 +8,7 @@ import { Skeleton } from '../../components/skeleton/Skeleton';
 import { BannerSkeleton } from '../../components/banner-skeleton/BannerSkeleton';
 
 export const Main = () => {
-	const { cards, isLoading } = useContext(AppContext);
+	const { cards, isLoading, addToFavourite } = useContext(AppContext);
 	const { values, setValues, handleChange } = useForm({ search: '' });
 	const filteredCards = cards.filter(card => card.title.toLowerCase().includes(values.search.toLowerCase()));
 
@@ -56,9 +56,8 @@ export const Main = () => {
 									title={card.title}
 									image={card.image}
 									price={card.price}
-									toggleLikeButton={card => {
-										card.target.classList.toggle('card__like_active');
-									}}
+									isLiked={card.isLiked}
+									onAddToFavourite={() => addToFavourite(card)}
 									toggleAddButton={card => {
 										card.target.classList.toggle('card__add_active');
 									}}
